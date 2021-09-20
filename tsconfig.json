@@ -6,10 +6,13 @@
       "DOM.Iterable",
       "ESNext"
     ],
-    // "moduleResolution": "node",
+    "moduleResolution": "node",
     "locale": "zh-cn",
     "allowJs": false
   },
+  "paths": [
+    "vue"
+  ],
   "include": [
     "./src"
   ],

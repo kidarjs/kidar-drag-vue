@@ -6,6 +6,7 @@ import autoprefixer from 'autoprefixer' // 自动加前缀，通过.browserslist
 import cssnano from 'cssnano' // 压缩css
 import vue from 'rollup-plugin-vue'
 import { terser } from 'rollup-plugin-terser' // 代码整体压缩
+import replace from 'rollup-plugin-replace'
 
 import serve from 'rollup-plugin-serve'
 import livereload from 'rollup-plugin-livereload'
@@ -13,10 +14,27 @@ import livereload from 'rollup-plugin-livereload'
 
 export default {
   input: 'src/index.ts', // 打包入口
-  output: { // 打包出口
-    file: 'lib/kidar-common.js', // 最终打包出来的文件路径和文件名，这里是在package.json的browser: 'dist/index.js'字段中配置的
-    format: 'umd', // umd是兼容amd/cjs/iife的通用打包格式，适合浏览器
-  },
+  output: [
+    { // 打包出口
+      file: 'lib/kidar-common.js', // 最终打包出来的文件路径和文件名，这里是在package.json的browser: 'dist/index.js'字段中配置的
+      name: 'KIDAR',
+      format: 'umd', // umd是兼容amd/cjs/iife的通用打包格式，适合浏览器
+      globals: {
+        vue: 'vue'
+      }
+    },
+    {
+      file: 'lib/kidar-es.js',
+      format: 'es',
+      globals: {
+        vue: 'vue'
+      }
+    },
+    {
+      file: 'lib/kidar-cjs.js',
+      format: 'cjs'
+    }
+  ],
   plugins: [ // 打包插件
     postcss({
       plugins: [autoprefixer(), cssnano()],
@@ -26,7 +44,11 @@ export default {
     resolve(),
     commonjs(),
     typescript(),
-    terser(),
+    // terser(),
+    replace({
+      'process.env.NODE_ENV': JSON.stringify('development'),
+      'process.env.VUE_ENV': JSON.stringify('browser')
+    }),
     serve({
       contentBase: '',  //服务器启动的文件夹，默认是项目根目录，需要在该文件下创建index.html
       port: 8020   //端口号，默认10001
