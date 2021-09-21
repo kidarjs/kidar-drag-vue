@@ -1,5 +1,6 @@
 import resolve from 'rollup-plugin-node-resolve' // 查找和打包node_modules中的第三方模块
 import commonjs from 'rollup-plugin-commonjs' // 将 CommonJS 转换成 ES2015 模块供 Rollup 处理，识别require
+import babel from 'rollup-plugin-babel' // babel
 import typescript from 'rollup-plugin-typescript' // 解析TypeScript
 import postcss from 'rollup-plugin-postcss'
 import autoprefixer from 'autoprefixer' // 自动加前缀，通过.browserslistrc 配置支持的浏览器范围
@@ -39,6 +40,9 @@ export default {
     postcss({
       plugins: [autoprefixer(), cssnano()],
       extract: 'lib/style/index.css' // 将css抽离成单独的文件
+    }),
+    babel({
+      exclude: 'node_modules/**' // 只编译我们的源代码
     }),
     vue(),
     resolve(),

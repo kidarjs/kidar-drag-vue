@@ -1,10 +1,12 @@
 {
   "name": "kidar-vue",
-  "version": "0.0.2-Alpha",
+  "version": "0.0.2-testd",
   "description": "一些实用，常年积累下的组件库，适用于vue.js",
   "main": "lib/kidar-common.js",
   "unpkg": "lib/kidar.min.js",
   "module": "lib/kidar-es.js",
+  "typings": "lib/index.d.ts",
+  "style": "lib/theme-chalk/index.css",
   "directories": {
     "doc": "docs",
     "test": "test"
@@ -16,7 +18,9 @@
   },
   "prepublishOnly": "npm run build",
   "files": [
-    "dist"
+    "lib",
+    "es",
+    "src"
   ],
   "keywords": [
     "kidar-vue",
@@ -31,21 +35,30 @@
   "engines": {
     "node": ">=12.0.0"
   },
+  "peerDependencies": {
+    "vue": "^2.6.11"
+  },
   "dependencies": {
     "echarts": "^5.2.0",
     "ramda": "^0.27.1",
     "resize-observer-polyfill": "^1.5.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/eslint-parser": "^7.15.7",
+    "@babel/plugin-external-helpers": "^7.14.5",
+    "@babel/preset-env": "^7.15.6",
     "@types/lodash-es": "^4.17.4",
     "@types/node": "^14.10.1",
     "autoprefixer": "^10.3.4",
+    "core-js": "^3.18.0",
     "cssnano": "^5.0.8",
     "jest": "^27.0.6",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "postcss": "^8.3.6",
     "rollup": "^2.56.3",
+    "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-livereload": "^2.0.5",
     "rollup-plugin-node-resolve": "^5.2.0",

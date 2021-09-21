@@ -27,6 +27,7 @@ export default class Drag {
     // 配置父子容器position属性，必须
     parentElement.style.position = 'relative'
     el.style.position = 'absolute'
+    el.style.boxSizing = 'border-box !important'
 
     this.el = el
     this.active = false
@@ -87,7 +88,6 @@ export default class Drag {
     const { pageX, pageY } = e
     let offsetX = pageX - this.parentX
     let offsetY = pageY - this.parentY
-    console.log(e, this, offsetTop, offsetLeft, offsetWidth, offsetHeight)
     return offsetX >= offsetLeft
       && offsetX <= (offsetLeft + offsetWidth)
       && offsetY >= offsetTop
@@ -105,7 +105,6 @@ export default class Drag {
     }
 
     let isDrag = this.isSelect(e)
-    console.log(isDrag)
 
     if (target.parentElement === this.el && target.className.startsWith('__dot')) {
       this.moveFlag = target.className.substring(6, 8)

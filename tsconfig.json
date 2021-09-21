@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
     "lib": [
       "DOM",
       "DOM.Iterable",
       "ESNext"
     ],
+    "target": "es2016",
+    "useDefineForClassFields": false,
     "moduleResolution": "node",
     "locale": "zh-cn",
     "allowJs": false
