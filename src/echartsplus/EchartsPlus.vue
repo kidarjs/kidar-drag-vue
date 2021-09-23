@@ -1,21 +1,18 @@
 <template>
-  <div ref="EchartsEl" class="ki-echartsplus"></div>
+  <div ref="EchartsEl"></div>
 </template>
 <script>
-import * as echarts from 'echarts/core';
-import {
-  TooltipComponent,
-  LegendComponent
-} from 'echarts/components';
-import { CanvasRenderer } from 'echarts/renderers';
+let echarts = null
+if (typeof window !== 'undefined' && window.echarts) {
+  echarts = window.echarts
+} else {
+  echarts = require('echarts');
+}
 
-echarts.use(
-  [TooltipComponent, LegendComponent, CanvasRenderer]
-);
-import PIE from './pie'
+import PIE from './plugins/pie'
 import { listenElResize, removeListenElResize } from '../utils/dom-resize'
 import { mergeDeepRight } from 'ramda'
-const PLUGINS = { pie: PIE }
+
 export default {
   name: 'KiEchartsPlus',
   props: {
@@ -29,14 +26,16 @@ export default {
       chart: null
     }
   },
+  plugins: {
+    pie: PIE
+  },
   watch: {
     type: function (val) {
-      if (PLUGINS[val]) {
+      if (this.$options.plugins[val]) {
         this.resetOption()
       } else {
-        import(`./${val}.js`).then(res => {
-          console.log(res)
-          PLUGINS[val] = res.default
+        import(`./plugins/${val}`).then(res => {
+          this.$options.plugins[val] = res.default
           this.resetOption()
         }).catch(error => {
           throw new Error(`加载【${val}.js】文件失败：${error}`)
@@ -60,17 +59,10 @@ export default {
       this.resetOption()
     },
     resetOption () {
-      const option = PLUGINS[this.type].resetOption(this.cols, this.data)
+      const option = this.$options.plugins[this.type].resetOption(this.cols, this.data)
       this.chart.clear()
       this.chart.setOption(mergeDeepRight(option, this.option))
     }
   }
 }
 </script>
-
-<style scoped>
-  .ki-echartsplus {
-    width: 100%;
-    height: 100%;
-  }
-</style>

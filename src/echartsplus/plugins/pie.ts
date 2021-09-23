@@ -1,12 +1,5 @@
-import * as echarts from 'echarts/core';
-import {
-  PieChart
-} from 'echarts/charts';
-
-echarts.use([PieChart])
-
 export default {
-  resetOption (cols, data) {
+  resetOption(cols, data) {
     const option = {
       legend: {
         data: cols.map(t => t.name)

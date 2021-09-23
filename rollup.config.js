@@ -48,7 +48,7 @@ export default {
     resolve(),
     commonjs(),
     typescript(),
-    // terser(),
+    terser(),
     replace({
       'process.env.NODE_ENV': JSON.stringify('development'),
       'process.env.VUE_ENV': JSON.stringify('browser')
@@ -57,9 +57,10 @@ export default {
       contentBase: '',  //服务器启动的文件夹，默认是项目根目录，需要在该文件下创建index.html
       port: 8020   //端口号，默认10001
     }),
-    livereload('dist')   //watch dist目录，当目录中的文件发生变化时，刷新页面
+    livereload(['example', 'lib'])   //watch example\lib目录，当目录中的文件发生变化时，刷新页面
   ],
   external: [  //外部库， 使用'umd'文件时需要先引入这个外部库
-    'vue'
+    'vue',
+    'echarts'
   ]
 }

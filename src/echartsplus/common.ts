@@ -1,4 +1,5 @@
-import {
-  TooltipComponent,
-  LegendComponent
-} from 'echarts/components';
+export const grid = (top, right, bottom, left) => {
+  return {
+    top, right, bottom, left
+  }
+}
