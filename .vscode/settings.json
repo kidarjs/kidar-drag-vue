@@ -12,6 +12,7 @@
   },
   "eslint.validate": [
     "javascript",
+    "html",
     "vue"
   ],
   "editor.tabSize": 2, //tab时等于两个空格缩进
@@ -22,5 +23,5 @@
   "vetur.format.styleInitialIndent": true,
   "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
   "javascript.format.insertSpaceAfterConstructor": true,
-  "vetur.validation.interpolation": false
+  "vetur.validation.templateProps": false
 }

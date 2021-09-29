@@ -1,14 +1,23 @@
 module.exports = {
-  "env": {
-    "browser": true,
-    "es6": true,
-    "node": true
+  root: true,
+  env: {
+    node: true
   },
-  "parserOptions": {
-    sourceType: 'module'
+  extends: [
+    'plugin:vue/vue3-essential',
+    '@vue/standard',
+    '@vue/typescript/recommended'
+  ],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    sourceType: 'module',
+    allowImportExportEverywhere: true
   },
-  extends: "eslint:recommended",
-  "rules": {
-
+  rules: {
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'quotes': ['error', 'single'],//强制使用单引号
+    "global-require": 0,
+    'semi': ['error', 'never']//强制不使用分号结尾
   }
-};
+}
