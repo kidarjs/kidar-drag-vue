@@ -5,9 +5,10 @@ import Components from "unplugin-vue-components/vite";
 import WindiCSS from "vite-plugin-windicss";
 import Icons from "unplugin-icons/vite";
 import IconsResolver from "unplugin-icons/resolver";
+import ENV from './.env'
 
 const config = defineConfig({
-  base: process.env.NODE_ENV === 'production' ? '/kidar-vue/' : '/',
+  base: ENV.BASE_URL,
   resolve: {
     alias: {
       "@": `${path.resolve(__dirname, "src")}`,

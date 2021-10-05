@@ -3,6 +3,7 @@ import VueRouter, { RouteConfig } from "vue-router";
 import Home from "@/views/Home.vue";
 import About from "@/views/About.vue";
 import NotFound from "@/views/NotFound.vue";
+import ENV from '../../.env'
 
 Vue.use(VueRouter);
 
@@ -29,7 +30,7 @@ export const routes: RouteConfig[] = [
 ];
 
 const router = new VueRouter({
-  base: "/",
+  base: ENV.BASE_URL,
   mode: "history",
   routes,
 });
