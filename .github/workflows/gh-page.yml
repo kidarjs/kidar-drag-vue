@@ -58,4 +58,4 @@ jobs:
           build_dir: dist
         env:
           # 此处需要配置自己GitHub仓库的secrets，添加TOKEN
-          KIDAR_PAGE_TOKEN: ${{ secrets.KIDAR_PAGE_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.KIDAR_PAGE_TOKEN }}
