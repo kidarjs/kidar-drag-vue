@@ -15,7 +15,12 @@ const config = defineConfig({
   },
 
   build: {
-    minify: true
+    minify: true,
+    outDir: 'lib',
+    lib: {
+      entry: 'src/packages/drag/index.ts',
+      fileName: 'kidar-vue'
+    }
   },
 
   plugins: [

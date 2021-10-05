@@ -2,18 +2,63 @@ import { throttle } from 'lodash-es'
 
 let DRAG_ITEM: HTMLElement
 let DRAG_CONTAINER: HTMLElement
-let ISMOVE: boolean
 let MOVE_TYPE: string
 let innerX: number
 let innerY: number
 
-const BorderLineHtmlText = `
-<div class="__border_line" style="border: 1px dashed #666;position: absolute;left: 0;right: 0;top: 0;bottom: 0;"></div>
-<div class="__dot_lt" style="left: -4px;top: -4px;cursor: nw-resize;position: absolute;width: 8px;height: 8px;background-color: #fff;border: 1px solid #333;"></div>
-<div class="__dot_lb" style="left: -4px;bottom: -4px;cursor: ne-resize;position: absolute;width: 8px;height: 8px;background-color: #fff;border: 1px solid #333;"></div>
-<div class="__dot_rt" style="right: -4px;top: -4px;cursor: ne-resize;position: absolute;width: 8px;height: 8px;background-color: #fff;border: 1px solid #333;"></div>
-<div class="__dot_rb" style="right: -4px;bottom: -4px;cursor: nw-resize;position: absolute;width: 8px;height: 8px;background-color: #fff;border: 1px solid #333;"></div>
-`
+const setDotStyle = (el: HTMLDivElement) => {
+  el.style.position = 'absolute'
+  el.style.width = '8px'
+  el.style.height = '8px'
+  el.style.backgroundColor = '#ffffff'
+  el.style.border = '1px solid #333'
+}
+
+const getSelectNodes = (() => {
+  let nodes: Node[]
+  return (): Node[] => {
+    if (nodes) return nodes
+    const borderEl = document.createElement('div')
+    borderEl.className = '__border_line'
+    borderEl.style.position = 'absolute'
+    borderEl.style.left = '0'
+    borderEl.style.right = '0'
+    borderEl.style.top = '0'
+    borderEl.style.bottom = '0'
+    borderEl.style.border = '1px dashed #666'
+
+    const lt = document.createElement('div')
+    lt.className = '__dot_lt'
+    setDotStyle(lt)
+    lt.style.cursor = 'nw-resize'
+    lt.style.left = '-4px'
+    lt.style.top = '-4px'
+
+    const lb = document.createElement('div')
+    lb.className = '__dot_lb'
+    setDotStyle(lb)
+    lb.style.cursor = 'ne-resize'
+    lb.style.left = '-4px'
+    lb.style.bottom = '-4px'
+
+    const rt = document.createElement('div')
+    rt.className = '__dot_rt'
+    setDotStyle(rt)
+    rt.style.cursor = 'ne-resize'
+    rt.style.right = '-4px'
+    rt.style.top = '-4px'
+
+    const rb = document.createElement('div')
+    rb.className = '__dot_rb'
+    setDotStyle(rb)
+    rb.style.cursor = 'nw-resize'
+    rb.style.right = '-4px'
+    rb.style.bottom = '-4px'
+
+    nodes = [borderEl, lt, lb, rt, rb]
+    return nodes
+  }
+})()
 
 const resetPos = (left: number, top: number, right?: number, bottom?: number) => {
   let { offsetHeight, offsetWidth } = DRAG_ITEM
@@ -49,12 +94,16 @@ const select = (target: HTMLElement) => {
     DRAG_ITEM && unselect(DRAG_ITEM)
   }
 
-  if (target.innerHTML.indexOf(BorderLineHtmlText) === -1) {
-    target.innerHTML = target.innerHTML + BorderLineHtmlText
+  if (target.innerHTML.indexOf('__border_line') === -1) {
+    target.append(...getSelectNodes())
   }
 }
 const unselect = (target: HTMLElement) => {
-  target.innerHTML = target.innerHTML.replaceAll(BorderLineHtmlText, '')
+  if (target && target.innerHTML.indexOf('__border_line') > -1) {
+    getSelectNodes().forEach(node => {
+      target.removeChild(node)
+    })
+  }
 }
 
 const isSelect = (target: HTMLElement, currentTarget: HTMLElement): boolean => {
@@ -88,13 +137,16 @@ const down = (e: MouseEvent) => {
   }
 }
 
-const up = (e: MouseEvent) => {
-  MOVE_TYPE = ''
-  DRAG_CONTAINER && (DRAG_CONTAINER.style.cursor = 'auto')
+const up = (callback?: Function) => {
+  return (e: MouseEvent) => {
+    MOVE_TYPE = ''
+    DRAG_CONTAINER && (DRAG_CONTAINER.style.cursor = 'auto')
+    callback && callback(DRAG_ITEM)
+  }
 }
+let updateDragItem: (this: HTMLElement, ev: MouseEvent) => any
 
 const move = (e: MouseEvent) => {
-  console.log(MOVE_TYPE)
   if (!MOVE_TYPE) { // 
     return
   }
@@ -129,7 +181,6 @@ const move = (e: MouseEvent) => {
       resize(offsetX, offsetTop, offsetWidth - offsetX + offsetLeft, offsetY - offsetTop)
       break
     case 'move':
-      console.log(innerX, innerY, pageX, pageY)
       DRAG_CONTAINER.style.cursor = 'move'
       resize(pageX - innerX, pageY - innerY, offsetWidth, offsetHeight)
       break
@@ -137,16 +188,22 @@ const move = (e: MouseEvent) => {
   }
 }
 
-const active = (el: HTMLElement) => {
+const active = (el: HTMLElement, callback: Function) => {
+  updateDragItem = up(callback)
+  el.style.userSelect = 'none'
   el.addEventListener('mousedown', down)
-  el.addEventListener('mouseup', up)
+  el.addEventListener('mouseup', updateDragItem)
   el.addEventListener('mousemove', move)
 }
 
 const clear = (el: HTMLElement) => {
+  el.style.userSelect = 'inherit'
   el.removeEventListener('mousedown', down)
-  el.removeEventListener('mouseup', up)
+  el.removeEventListener('mouseup', updateDragItem)
   el.removeEventListener('mousemove', move)
+
+  // 移除选中状态
+  DRAG_ITEM && unselect(DRAG_ITEM)
 }
 
 export default {
