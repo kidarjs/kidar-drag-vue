@@ -19,7 +19,8 @@ const config = defineConfig({
     outDir: 'lib',
     lib: {
       entry: 'src/packages/drag/index.ts',
-      fileName: 'kidar-vue'
+      fileName: 'kidar-vue',
+      name: 'KIDAR_VUE'
     }
   },
 
