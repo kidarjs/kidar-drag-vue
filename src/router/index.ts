@@ -9,12 +9,12 @@ Vue.use(VueRouter);
 export const routes: RouteConfig[] = [
   {
     path: "/",
-    name: "Home",
+    name: "拖拽盒子",
     component: Home,
   },
   {
     path: "/about",
-    name: "About",
+    name: "Echarts",
     // NOTE: you can also apply meta information
     // meta: {authRequired: false }
     component: About,

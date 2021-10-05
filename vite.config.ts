@@ -7,6 +7,7 @@ import Icons from "unplugin-icons/vite";
 import IconsResolver from "unplugin-icons/resolver";
 
 const config = defineConfig({
+  base: process.env.NODE_ENV === 'production' ? '/kidar-vue/' : '/',
   resolve: {
     alias: {
       "@": `${path.resolve(__dirname, "src")}`,
