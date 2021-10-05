@@ -2,7 +2,7 @@
   <header class="text-gray-600 body-font dark:bg-gray-800">
     <div class="container flex flex-col flex-wrap items-center p-5 mx-auto md:flex-row">
       <RouterLink :to="{ name: 'Home' }" class="flex items-center mb-4 font-medium text-gray-900 title-font md:mb-0">
-        <img alt="Vite logo" src="@/assets/vite-logo.svg" width="36px" />
+        <img alt="Vite logo" src="@/assets/logo.png" width="36px" />
         <span class="ml-3 text-xl dark:text-white">
           {{ appName }}
         </span>
@@ -17,13 +17,14 @@
           {{ route.name }}
         </RouterLink>
         <RouterLink class="flex items-center justify-center mr-2 text-black w-9 h-9 dark:text-white" to="/aliens">
-
+          <i-mdi-qqchat class="text-red-500" />
         </RouterLink>
-        <a href="https://github.com/lstoeferle/vite-vue2-windicss-starter" target="_blank" class="flex items-center justify-center mr-2 text-black w-9 h-9 dark:text-white">
-
+        <a href="https://github.com/kidarjs/kidar-vue" target="_blank" class="flex items-center justify-center mr-2 text-black w-9 h-9 dark:text-white">
+          <i-mdi-github />
         </a>
         <button @click="toggle" class="flex items-center justify-center w-9 h-9 focus:outline-none">
-
+          <i-mdi-brightness-6 v-show="!isDark" class="text-black animate-roll-in" />
+          <i-mdi-brightness-4 v-show="isDark" class="text-white animate-heart-beat " />
         </button>
       </nav>
     </div>
@@ -50,3 +51,8 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+  @keyframes identifier {
+  }
+</style>

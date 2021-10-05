@@ -141,7 +141,7 @@ const up = (callback?: Function) => {
   return (e: MouseEvent) => {
     MOVE_TYPE = ''
     DRAG_CONTAINER && (DRAG_CONTAINER.style.cursor = 'auto')
-    callback && callback(DRAG_ITEM)
+    DRAG_ITEM && callback && callback(DRAG_ITEM)
   }
 }
 let updateDragItem: (this: HTMLElement, ev: MouseEvent) => any
