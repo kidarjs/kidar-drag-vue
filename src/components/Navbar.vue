@@ -1,5 +1,5 @@
 <template>
-  <header class="text-gray-600 body-font dark:bg-gray-800">
+  <header class="text-gray-600 body-font dark:bg-gray-800 border-b-1 border-gray-400">
     <div class="container flex flex-col flex-wrap items-center p-5 mx-auto md:flex-row">
       <RouterLink :to="{ name: 'Home' }" class="flex items-center mb-4 font-medium text-gray-900 title-font md:mb-0">
         <img alt="Vite logo" src="@/assets/logo.png" width="36px" />
