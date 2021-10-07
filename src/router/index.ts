@@ -6,19 +6,20 @@ import NotFound from "@/views/NotFound.vue";
 
 Vue.use(VueRouter);
 
-const lazyLoad = (name: string) => () => import(`../views/${name}`)
+const lazyLoad = (name: string) => () => import(/* @vite-ignore */`../views/${name}.vue`)
+const lazyFolderLoad = (folder: string, name: string) => () => import(/* @vite-ignore */`../views/${folder}/${name}.vue`)
 
 export const screenRoutes = [
-  { path: "screen-finance", name: "金融实况", component: lazyLoad('echartsplus/FinanceScreen.vue') },
-  { path: "screen-electricity", name: "全国用电分布", component: lazyLoad('echartsplus/ElectricityScreen.vue') }
+  { path: "screen-finance", name: "金融实况", component: lazyFolderLoad('echartsplus', 'FinanceScreen') },
+  { path: "screen-electricity", name: "全国用电分布", component: lazyFolderLoad('echartsplus', 'ElectricityScreen') }
 ]
 
 export const echartsPluginsRoutes = [
-  { path: "plugins-ring", name: "圆环图", component: lazyLoad('echartsplus/Ring.vue') },
-  { path: "plugins-bar", name: "条形图", component: lazyLoad('echartsplus/Bar.vue') },
-  { path: "plugins-line", name: "折线图", component: lazyLoad('echartsplus/Line.vue') },
-  { path: "plugins-bar-line", name: "条形、折线图", component: lazyLoad('echartsplus/BarLine.vue') },
-  { path: "plugins-area", name: "面积图", component: lazyLoad('echartsplus/Area.vue') }
+  { path: "plugins-ring", name: "圆环图", component: lazyFolderLoad('echartsplus', 'Ring') },
+  { path: "plugins-bar", name: "条形图", component: lazyFolderLoad('echartsplus', 'Bar') },
+  { path: "plugins-line", name: "折线图", component: lazyFolderLoad('echartsplus', 'Line') },
+  { path: "plugins-bar-line", name: "条形、折线图", component: lazyFolderLoad('echartsplus', 'BarLine') },
+  { path: "plugins-area", name: "面积图", component: lazyFolderLoad('echartsplus', 'Area') }
 ]
 
 export const routes: RouteConfig[] = [
@@ -30,7 +31,7 @@ export const routes: RouteConfig[] = [
   {
     path: "/drag",
     name: "拖拽盒子",
-    component: lazyLoad('drag/index.vue'),
+    component: lazyFolderLoad('drag', 'index'),
   },
   {
     path: "/echartsplus",
