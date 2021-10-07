@@ -16,9 +16,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 /**
  *按需导出
  **/
-export {
+export default {
   KiDrag,
   KiEchartsPlus
 }
-
-export default install  //umd

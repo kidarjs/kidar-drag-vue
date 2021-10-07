@@ -2,13 +2,7 @@
   <div ref="EchartsEl"></div>
 </template>
 <script>
-let echarts = null
-if (typeof window !== 'undefined' && window.echarts) {
-  echarts = window.echarts
-} else {
-  echarts = await import('echarts');
-}
-
+import * as echarts from 'echarts'
 import PIE from './plugins/pie'
 import { domResize } from 'nkxrb-tools'
 import { mergeDeepRight } from 'ramda'
@@ -34,7 +28,7 @@ export default {
       if (this.$options.plugins[val]) {
         this.resetOption()
       } else {
-        import(/* @vite-ignore */`./plugins/${val}`).then(res => {
+        import(/* @vite-ignore */`./plugins/${val}.js`).then(res => {
           this.$options.plugins[val] = res.default
           this.resetOption()
         }).catch(error => {
