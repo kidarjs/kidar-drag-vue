@@ -6,7 +6,7 @@ import NotFound from "@/views/NotFound.vue";
 
 Vue.use(VueRouter);
 
-const lazyLoad = (name: string) => () => import(/* @vite-ignore */`../views/${name}`)
+const lazyLoad = (name: string) => () => import(`../views/${name}`)
 
 export const screenRoutes = [
   { path: "screen-finance", name: "金融实况", component: lazyLoad('echartsplus/FinanceScreen.vue') },
