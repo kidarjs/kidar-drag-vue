@@ -17,7 +17,6 @@ import { screenRoutes, echartsPluginsRoutes } from '@/router'
 export default defineComponent({
   components: { ContentWrapper },
   setup () {
-
     const navList = [
       {
         name: '大屏样例', children: screenRoutes.map(t => {

@@ -84,8 +84,8 @@ const resetPos = (left: number, top: number, right?: number, bottom?: number) =>
 }
 
 const resize = throttle(function (left, top, width, height) {
-  DRAG_ITEM.style.width = width + 'px'
-  DRAG_ITEM.style.height = height + 'px'
+  DRAG_ITEM.style.width = Number(width) / Number(DRAG_CONTAINER.clientWidth) * 100 + '%'
+  DRAG_ITEM.style.height = Number(height) / Number(DRAG_CONTAINER.clientHeight) * 100 + '%'
   resetPos(left, top)
 }, 100)
 

@@ -1,7 +1,7 @@
 <template>
   <header class="text-gray-600 body-font dark:bg-gray-800 border-b-1 border-gray-400">
     <div class="container flex flex-col flex-wrap items-center p-5 mx-auto md:flex-row">
-      <RouterLink :to="{ name: 'Home' }" class="flex items-center mb-4 font-medium text-gray-900 title-font md:mb-0">
+      <RouterLink :to="{ path: '/' }" class="flex items-center mb-4 font-medium text-gray-900 title-font md:mb-0">
         <img alt="Vite logo" src="@/assets/logo.png" width="36px" />
         <span class="ml-3 text-xl dark:text-white">
           {{ appName }}
@@ -10,9 +10,9 @@
       <nav class="flex flex-wrap items-center justify-center text-base md:ml-auto">
         <RouterLink v-for="(route, index) in routes" :key="index" class="mr-5 font-semibold cursor-pointer" :class="{
             'text-green-500 hover:green-500 dark:text-green-500 dark:hover:text-green-500 underline':
-              route.name === currentRoute,
+              currentRoute.includes(route.name),
             'hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200':
-              route.name != currentRoute,
+              !currentRoute.includes(route.name),
           }" :to="{ name: route.name }">
           {{ route.name }}
         </RouterLink>
@@ -40,9 +40,10 @@ export default defineComponent({
   setup: (_, ctx) => {
     // Import config from .evn
     const appName = import.meta.env.VITE_APP_NAME;
-
     const availableRoutes = routes.filter((route) => route.name != "NotFound");
-    const currentRoute = computed(() => ctx.root.$route.name);
+    const currentRoute = computed(() =>
+      ctx.root.$route.matched.map((t) => t.name)
+    );
 
     const isDark = useDark();
     const toggle = useToggle(isDark);

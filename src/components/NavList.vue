@@ -6,11 +6,12 @@
         <li class="mt-8" v-for="item in data" :key="item.name">
           <h5 class="px-3 mb-3 lg:mb-3 uppercase tracking-wide font-semibold text-sm lg:text-xs text-gray-900">{{item.name}}</h5>
           <ul v-if="item.children && item.children.length>0">
-            <li v-for="child in item.children" :key="child.name" :class="currentRoute===child.name?'text-cyan-700':'hover:text-gray-900 text-gray-500'">
-              <a class="px-3 py-2 transition-colors duration-200 relative block" :href="child.href">
+            <li v-for="child in item.children" :key="child.name">
+              <router-link class="px-3 py-2 transition-colors duration-200 relative block hover:bg-cyan-100"
+                           :class="currentRoute===child.name?'text-cyan-700 bg-cyan-100':'hover:text-gray-900 text-gray-500'" :to="{ name: child.name }">
                 <span class="rounded-md absolute inset-0 bg-cyan-50 opacity-0"></span>
                 <span class="relative">{{child.name}}</span>
-              </a>
+              </router-link>
             </li>
           </ul>
         </li>

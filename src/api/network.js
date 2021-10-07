@@ -1,7 +1,7 @@
 // 引入axios
 import axios from 'axios'
 
-const PREFIXURL = '/'
+const PREFIXURL = import.meta.env.BASE_URL
 // 创建请求合集，用于取消重复的请求
 const requestMap = {}
 const CancelToken = axios.CancelToken

@@ -6,9 +6,7 @@ let echarts = null
 if (typeof window !== 'undefined' && window.echarts) {
   echarts = window.echarts
 } else {
-  console.log('echarts:', echarts)
   echarts = await import('echarts');
-  console.log('echarts==', echarts)
 }
 
 import PIE from './plugins/pie'
