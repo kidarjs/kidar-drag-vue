@@ -7,7 +7,7 @@ import Icons from "unplugin-icons/vite";
 import IconsResolver from "unplugin-icons/resolver";
 
 const config = ({ mode }) => defineConfig({
-  base: loadEnv(mode, process.cwd()).BASE_URL,
+  base: loadEnv(mode, process.cwd()).VITE_BASE_URL,
   resolve: {
     alias: {
       "@": `${path.resolve(__dirname, "src")}`,
