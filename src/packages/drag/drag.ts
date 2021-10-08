@@ -60,7 +60,7 @@ const getSelectNodes = (() => {
   }
 })()
 
-const resetPos = (left: number, top: number, right?: number, bottom?: number) => {
+const resetPos = (left: number, top: number) => {
   let { offsetHeight, offsetWidth } = DRAG_ITEM
 
   if (top < 0) {
@@ -77,10 +77,8 @@ const resetPos = (left: number, top: number, right?: number, bottom?: number) =>
   if (top + offsetHeight > DRAG_CONTAINER.offsetHeight) {
     top = DRAG_CONTAINER.offsetHeight - offsetHeight
   }
-  DRAG_ITEM.style.left = left + 'px'
-  DRAG_ITEM.style.top = top + 'px'
-  DRAG_ITEM.style.right = right + 'px'
-  DRAG_ITEM.style.bottom = bottom + 'px'
+  DRAG_ITEM.style.left = Number(left) / Number(DRAG_CONTAINER.clientWidth) * 100 + '%'
+  DRAG_ITEM.style.top = Number(top) / Number(DRAG_CONTAINER.clientHeight) * 100 + '%'
 }
 
 const resize = throttle(function (left, top, width, height) {

@@ -55,6 +55,7 @@ export default {
       let item = {
         id: nanoid(),
         width: '50px',
+        minWidth: '200px',
         height: '50px',
         color: colors[Math.ceil(Math.random() * 8)]
       }

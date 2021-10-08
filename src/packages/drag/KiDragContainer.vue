@@ -1,7 +1,7 @@
 <template>
   <div ref="dragContainer" style="position: relative;height: 100%;width: 100%;background-color: #f1f1f1;">
     <div v-for="(item, i) in items" :key="item.id" :dataset-drag-index="i"
-         :style="`position: absolute;width:${item.width};height:${item.height};left:${item.left};top:${item.top}`">
+         :style="`position: absolute;width:${item.width};height:${item.height};left:${item.left};top:${item.top};min-width:${item.minWidth};`">
       <div class="__drag-item" style="height: 100%;width: 100%;position: absolute;top: 50%;left: 50%;transform: translateX(-50%) translateY(-50%);">
         <slot name="item" v-bind:item="item"></slot>
       </div>

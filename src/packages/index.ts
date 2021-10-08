@@ -16,7 +16,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 /**
  *按需导出
  **/
-export default {
+export {
   KiDrag,
   KiEchartsPlus
 }
