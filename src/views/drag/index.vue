@@ -24,6 +24,7 @@
 </template>
 <script>
 import { nanoid } from 'nanoid'
+import KiDragContainer from 'kidar-vue-drag'
 
 const colors = [
   "#199999",
@@ -38,6 +39,7 @@ const colors = [
 ]
 
 export default {
+  components: { KiDragContainer },
   data () {
     return {
       editable: true,

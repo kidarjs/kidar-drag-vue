@@ -31,6 +31,12 @@ const config = ({ mode }) => defineConfig({
 
   server: {
     port: 8080,
+    fs: {
+      allow: [".."]
+    },
+    watch: {
+      ignored: ['!**/node_modules/kidar-vue-drag/**']
+    }
   },
 });
 

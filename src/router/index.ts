@@ -51,7 +51,7 @@ export const routes: RouteConfig[] = [
 
 const router = new VueRouter({
   base: import.meta.env.BASE_URL,
-  mode: "history",
+  mode: "hash",
   routes,
 });
 
