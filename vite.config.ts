@@ -23,7 +23,9 @@ const config = ({ mode }) => defineConfig({
     createVuePlugin(),
     Components({
       dirs: ["src/components", "src/packages"],
-      resolvers: IconsResolver(),
+      resolvers: [
+        IconsResolver()
+      ],
     }),
     Icons(),
     WindiCSS(),
