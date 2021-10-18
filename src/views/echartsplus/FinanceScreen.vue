@@ -2,6 +2,7 @@
   <div>
     <ki-echarts-plus type="pie" :data="chartData.pie" style="height: 380px;" />
     <ki-echarts-plus type="line" :data="chartData.pie" style="height: 380px;" />
+    <ki-echarts-plus type="line" :data="chartData.pie" style="height: 380px;" />
   </div>
 </template>
 
