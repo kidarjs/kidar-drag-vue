@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
- 具体可点击查看在线示例<a href="https://kidarjs.github.io/kidar-vue/"> ✨ Live Demo</a>
+ 具体可点击查看在线示例 ✨ <a href="https://kidarjs.github.io/kidar-vue-examples/">Live Demo</a>
 </p>
 
 # 🔥 Features
