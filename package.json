@@ -15,18 +15,19 @@
   },
   "workspaces": [
     "kidar-vue-examples",
-    "kidar-vue-drag",
-    "kidar-vue-echarts"
+    "kidar-drag",
+    "kidar-echarts"
   ],
   "dependencies": {
     "@vue/composition-api": "^1.0.0-rc.8",
     "@vueuse/core": "^4.9.1",
     "core-js": "^3.11.1",
     "echarts": "^5.2.1",
+    "echarts-gl": "^2.0.8",
     "element-plus": "^1.1.0-beta.20",
     "element-ui": "^2.15.6",
+    "kidar-echarts": "^0.3.2-bate",
     "kidar-vue-drag": "^1.0.1-alpha",
-    "kidar-vue-echarts": "^0.1.2-bate",
     "lodash-es": "^4.17.21",
     "nkxrb-tools": "0.0.2",
     "ramda": "^0.27.1",

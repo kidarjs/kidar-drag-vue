@@ -6,35 +6,26 @@
       </div>
     </div>
     <div class="w-full xl:w-1/4 flex flex-wrap">
-      <ki-echarts-plus type="line" :data="chartData.pie" class="h-60 w-full lg:w-1/3 xl:w-full" />
-      <ki-echarts-plus type="pie" :data="chartData.pie" class="h-60 w-full lg:w-1/3 xl:w-full" />
-      <ki-echarts-plus type="barX" :data="chartData.pie" class="h-60 w-full lg:w-1/3 xl:w-full" />
+      <kidar-echarts type="line" :data="chartData.pie" class="h-60 w-full lg:w-1/3 xl:w-full" />
+      <kidar-echarts type="pie" :data="chartData.pie" class="h-60 w-full lg:w-1/3 xl:w-full" />
+      <kidar-echarts type="map" :data="chartData.pie" class="h-60 w-full lg:w-1/3 xl:w-full" />
     </div>
-    <ki-echarts-plus type="pie" :data="chartData.pie" class="h-180 w-full xl:w-2/4" />
+    <kidar-echarts type="earth" :data="chartData.pie" class="h-180 w-full xl:w-2/4" />
     <div class="w-full xl:w-1/4 flex flex-wrap">
-      <ki-echarts-plus type="mutiLine" :data="chartData.pie" class="h-60 w-full lg:w-1/3 xl:w-full" />
-      <ki-echarts-plus type="barY" :data="chartData.pie" class="h-60 w-full lg:w-1/3 xl:w-full" />
-      <ki-echarts-plus type="pie" :data="chartData.pie" class="h-60 w-full lg:w-1/3 xl:w-full" />
+      <kidar-echarts type="multi-line-bar-x" :cols="cols" :data="chartData.pie" class="h-60 w-full lg:w-1/3 xl:w-full" />
+      <kidar-echarts type="map3d" :data="chartData.pie" class="h-60 w-full lg:w-1/3 xl:w-full" />
+      <kidar-echarts type="dybar" :data="chartData.pie" class="h-60 w-full lg:w-1/3 xl:w-full" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { KiEchartsPlus } from "kidar-vue-echarts";
+import { KidarEcharts } from "kidar-echarts";
 import { defineComponent, reactive, ref } from "@vue/composition-api";
 import { post } from "@/api/network";
-import barX from "./plugins/barX";
-import barY from "./plugins/barY";
-import mutiLine from "./plugins/mutiLine";
-import map from "./plugins/map";
-
-KiEchartsPlus.addPlugin(barX)
-  .addPlugin(barY)
-  .addPlugin(mutiLine)
-  .addPlugin(map);
 
 export default defineComponent({
-  components: { KiEchartsPlus },
+  components: { KidarEcharts },
   setup(_, ctx) {
     let chartData = reactive({
       pie: [],
@@ -43,6 +34,10 @@ export default defineComponent({
       mitiBar: [],
       map: [],
     });
+    const cols = [
+      { name: "人", prop: "people", type: "bar" },
+      { name: "gdp", prop: "gdp", type: "line" },
+    ];
     let type = ref("pie");
     post("list500").then((res) => {
       chartData.pie = res.data;
@@ -52,6 +47,7 @@ export default defineComponent({
     return {
       chartData,
       type,
+      cols,
     };
   },
 });

@@ -10,17 +10,14 @@
     </div>
 
     <div class="container flex flex-col items-left justify-center px-5 py-5 mx-auto">
-      安装:
+      安装 KidarEcharts:
       <p class="mb-8 mt-4 leading-relaxed bg-gray-200">
-        npm install kidar-vue --save
+        import { KidarEcharts } from 'kidar-echarts'
       </p>
-      按需引入拖拽盒子:
+
+      安装-拖拽盒子:
       <p class="mb-8 mt-4 leading-relaxed bg-gray-200">
-        import { KiDrag } from 'kidar-vue'
-      </p>
-      按需引入EchartsPlus:
-      <p class="mb-8 mt-4 leading-relaxed bg-gray-200">
-        import { KiEchartsPlus } from 'kidar-vue'
+        import { KidarDrag } from 'kidar-drag'
       </p>
     </div>
   </section>
