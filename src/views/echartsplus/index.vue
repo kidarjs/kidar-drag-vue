@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div class="flex h-full">
     <side-bar>
       <nav-list :data="navList"></nav-list>
     </side-bar>

@@ -1,5 +1,5 @@
 <template>
-  <header class="text-gray-600 body-font dark:bg-gray-800 border-b-1 border-gray-400">
+  <header class="text-gray-600 body-font border-b-1 border-gray-400">
     <div class="container flex flex-col flex-wrap items-center p-5 mx-auto md:flex-row">
       <RouterLink :to="{ path: '/' }" class="flex items-center mb-4 font-medium text-gray-900 title-font md:mb-0">
         <img alt="Vite logo" src="@/assets/logo.png" width="36px" />
@@ -13,7 +13,7 @@
               currentRoute.includes(route.name),
             'hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200':
               !currentRoute.includes(route.name),
-          }" :to="{ name: route.name }">
+          }" :to="{ path: route.path }">
           {{ route.name }}
         </RouterLink>
         <RouterLink class="flex items-center justify-center mr-2 text-black w-9 h-9 dark:text-white" to="/aliens">
@@ -32,9 +32,16 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue-demi";
+import {
+  computed,
+  defineComponent,
+  isRef,
+  provide,
+  ref,
+  watchEffect,
+} from "vue-demi";
 import { routes } from "@/router";
-import { useDark, useToggle } from "@vueuse/core";
+import { useDark } from "@vueuse/core";
 
 export default defineComponent({
   setup: (_, ctx) => {
@@ -46,7 +53,11 @@ export default defineComponent({
     );
 
     const isDark = useDark();
-    const toggle = useToggle(isDark);
+    ctx.emit("themeChange", isDark.value);
+    const toggle = () => {
+      isDark.value = !isDark.value;
+      ctx.emit("themeChange", isDark.value);
+    };
 
     return { appName, routes: availableRoutes, currentRoute, toggle, isDark };
   },

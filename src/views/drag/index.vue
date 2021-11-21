@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <div class="drag-tools">
+  <div class="h-full">
+    <div class="drag-tools dark:text-white">
       <button @click="add">新增</button>
       <button @click="active">启动编辑</button>
       <button @click="disable">禁止编辑</button>
     </div>
-    <div class="mt-4 mb-4 px-4">
+    <div class="mt-4 mb-4 px-4 dark:text-white">
       <p>
         注意：事件机制，盒子在启动编辑的状态下，内部的点击事件会被屏蔽，只有禁止编辑后，用户在盒子内部定义的事件才会被触发
       </p>
@@ -94,8 +94,6 @@ export default {
     display: flex;
     align-items: center;
     height: 60px;
-    background-color: #ffffff;
-    border-bottom: 1px solid #999999;
     text-align: center;
   }
   .drag-tools button {

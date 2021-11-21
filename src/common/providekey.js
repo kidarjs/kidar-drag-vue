@@ -1,0 +1,1 @@
+export const GLOBAL_ISDARK = Symbol("global-is-dark")

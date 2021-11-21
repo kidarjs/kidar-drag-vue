@@ -10,8 +10,8 @@ const lazyLoad = (name: string) => () => import(/* @vite-ignore */`../views/${na
 const lazyFolderLoad = (folder: string, name: string) => () => import(/* @vite-ignore */`../views/${folder}/${name}.vue`)
 
 export const screenRoutes = [
-  { path: "screen-finance", name: "金融实况", component: lazyFolderLoad('echartsplus', 'FinanceScreen') },
-  { path: "screen-electricity", name: "全国用电分布", component: lazyFolderLoad('echartsplus', 'ElectricityScreen') }
+  { path: "", name: "大屏样例1", component: lazyFolderLoad('echartsplus', 'FinanceScreen') },
+  { path: "screen-electricity", name: "大屏样例2", component: lazyFolderLoad('echartsplus', 'ElectricityScreen') }
 ]
 
 export const echartsPluginsRoutes = [
@@ -19,7 +19,8 @@ export const echartsPluginsRoutes = [
   { path: "plugins-bar", name: "条形图", component: lazyFolderLoad('echartsplus', 'Bar') },
   { path: "plugins-line", name: "折线图", component: lazyFolderLoad('echartsplus', 'Line') },
   { path: "plugins-bar-line", name: "条形、折线图", component: lazyFolderLoad('echartsplus', 'BarLine') },
-  { path: "plugins-area", name: "面积图", component: lazyFolderLoad('echartsplus', 'Area') }
+  { path: "plugins-area", name: "面积图", component: lazyFolderLoad('echartsplus', 'Area') },
+  { path: "plugins-map", name: "地图", component: lazyFolderLoad('echartsplus', 'Map') },
 ]
 
 export const routes: RouteConfig[] = [
@@ -29,18 +30,18 @@ export const routes: RouteConfig[] = [
     component: Home,
   },
   {
-    path: "/drag",
-    name: "拖拽盒子",
-    component: lazyFolderLoad('drag', 'index'),
-  },
-  {
-    path: "/echartsplus",
-    name: "EchartsPlus",
+    path: "/echartsplus/",
+    name: "KidarEcharts",
     component: () => import("@/views/echartsplus/index.vue"),
     children: [
       ...screenRoutes,
       ...echartsPluginsRoutes
     ]
+  },
+  {
+    path: "/drag",
+    name: "拖拽盒子",
+    component: lazyFolderLoad('drag', 'index'),
   },
   {
     path: "/:path(.*)",

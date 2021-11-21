@@ -1,5 +1,5 @@
 <template>
-  <section class="text-gray-600 body-font dark:text-gray-300">
+  <section class="text-gray-600 body-font dark:text-gray-200">
     <div class="container flex flex-col items-center justify-center px-5 py-24 mx-auto">
       <div class="w-full text-center lg:w-2/3">
         <Heading1> KIDAR 🍥 一款复合型组件库 </Heading1>
@@ -10,15 +10,11 @@
     </div>
 
     <div class="container flex flex-col items-left justify-center px-5 py-5 mx-auto">
-      安装 KidarEcharts:
-      <p class="mb-8 mt-4 leading-relaxed bg-gray-200">
-        import { KidarEcharts } from 'kidar-echarts'
-      </p>
+      <!-- <div class="w-full p-2 md:w-1/2 lg:w-1/4"></div> -->
+      <Feature title="kidar-echarts" text="简单易用的echarts组件，轻松画出炫酷的可视化大屏，具体示例点击上方菜单查看。" url="https://github.com/kidarjs/kidar-echarts" />
+      <br />
+      <Feature title="kidar-drag" text="一个可自由拖拽的div盒子，具体示例点击上方菜单查看。" url="https://github.com/kidarjs/kidar-drag" />
 
-      安装-拖拽盒子:
-      <p class="mb-8 mt-4 leading-relaxed bg-gray-200">
-        import { KidarDrag } from 'kidar-drag'
-      </p>
     </div>
   </section>
 

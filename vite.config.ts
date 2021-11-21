@@ -16,7 +16,15 @@ const config = ({ mode }) => defineConfig({
   },
 
   build: {
-    minify: true
+    minify: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          echarts: ['echarts'],
+          'echarts-gl': ['echarts-gl'],
+        }
+      }
+    }
   },
 
   plugins: [
