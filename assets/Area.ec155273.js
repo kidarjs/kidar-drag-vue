@@ -1,0 +1,1 @@
+import{n as t}from"./index.c2103e5d.js";const e={};var n=t({},(function(){var t=this,e=t.$createElement;return(t._self._c||e)("div",{staticClass:"flex flex-wrap h-full dark:text-gray-200"},[t._v(" 努力施工中... ")])}),[],!1,r,null,null,null);function r(t){for(let n in e)this[n]=e[n]}var l=function(){return n.exports}();export{l as default};
