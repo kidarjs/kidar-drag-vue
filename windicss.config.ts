@@ -6,6 +6,7 @@ function range(size, startAt = 1) {
 }
 
 const config = defineConfig({
+
   darkMode: 'class',
   theme: {
   },

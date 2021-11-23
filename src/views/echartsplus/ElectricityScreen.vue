@@ -1,15 +1,15 @@
 <template>
   <div class="flex flex-wrap h-full finance">
     <div class="w-full xl:w-1/4 flex flex-wrap">
-      <kidar-echarts title="峰值" type="line-bar-x" :theme="theme" :cols="cols.bar" :data="chartData.bar" class="h-1/3 w-full lg:w-1/3 xl:w-full" />
-      <kidar-echarts title="近三年比较" type="line-bar-x" :theme="theme" :cols="cols.linebar" :data="chartData.linebar" class="h-1/3 w-full lg:w-1/3 xl:w-full" />
-      <kidar-echarts title="地区分布" type="map" :theme="theme" :data="chartData.map" class="h-1/3 w-full lg:w-1/3 xl:w-full" />
+      <kidar-echarts title="峰值" type="line-bar-x" :theme="theme" :cols="cols.bar" :data="chartData.bar" class="h-70 w-full lg:w-1/3 xl:w-full xl:h-1/3" />
+      <kidar-echarts title="近三年比较" type="line-bar-x" :theme="theme" :cols="cols.linebar" :data="chartData.linebar" class="h-70 w-full lg:w-1/3 xl:w-full xl:h-1/3" />
+      <kidar-echarts title="地区分布" type="map" :theme="theme" :data="chartData.map" class="h-70 w-full lg:w-1/3 xl:w-full xl:h-1/3" />
     </div>
-    <kidar-echarts title="热点关注度" type="graph" :theme="theme" :data="chartData.graph" class="h-full w-full xl:w-2/4" />
+    <kidar-echarts title="热点关注度" type="graph" :theme="theme" :data="chartData.graph" class="h-90 w-full xl:w-2/4 xl:h-full" />
     <div class="w-full xl:w-1/4 flex flex-wrap">
-      <kidar-echarts title="趋势波动" type="line-bar-x" :theme="theme" :cols="cols.line" :data="chartData.bar" class="h-1/3 w-full lg:w-1/3 xl:w-full" />
-      <kidar-echarts title="占比" type="ring" :theme="theme" :data="chartData.pie" class="h-1/3 w-full lg:w-1/3 xl:w-full" />
-      <kidar-echarts type="treemap" :theme="theme" :cols="cols.area" :data="chartData.area" class="h-1/3 w-full lg:w-1/3 xl:w-full" />
+      <kidar-echarts title="趋势波动" type="line-bar-x" :theme="theme" :cols="cols.line" :data="chartData.bar" class="h-70 w-full lg:w-1/3 xl:w-full xl:h-1/3" />
+      <kidar-echarts title="占比" type="ring" :theme="theme" :data="chartData.pie" class="h-70 w-full lg:w-1/3 xl:w-full xl:h-1/3" />
+      <kidar-echarts type="treemap" :theme="theme" :cols="cols.area" :data="chartData.area" class="h-70 w-full lg:w-1/3 xl:w-full xl:h-1/3" />
     </div>
   </div>
 </template>

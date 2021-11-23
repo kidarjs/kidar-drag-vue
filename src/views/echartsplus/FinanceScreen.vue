@@ -1,15 +1,15 @@
 <template>
   <div class="flex flex-wrap h-full finance">
     <div class="w-full xl:w-1/4 flex flex-wrap">
-      <kidar-echarts title="趋势" type="arealine" :theme="theme" :cols="cols.area" :data="chartData.area" class="h-1/3 w-full lg:w-1/3 xl:w-full" />
-      <kidar-echarts title="2020-2021比较" type="line-bar-x" :theme="theme" :cols="cols.linebar" :data="chartData.linebar" class="h-1/3 w-full lg:w-1/3 xl:w-full" />
-      <kidar-echarts title="五大区占比" type="pie" :theme="theme" :data="chartData.pie" class="h-1/3 w-full lg:w-1/3 xl:w-full" />
+      <kidar-echarts title="趋势" type="arealine" :theme="theme" :cols="cols.area" :data="chartData.area" class="h-70 w-full lg:w-1/3 xl:w-full xl:h-1/3" />
+      <kidar-echarts title="2020-2021比较" type="line-bar-x" :theme="theme" :cols="cols.linebar" :data="chartData.linebar" class="h-70 w-full lg:w-1/3 xl:w-full xl:h-1/3" />
+      <kidar-echarts title="五大区占比" type="pie" :theme="theme" :data="chartData.pie" class="h-70 w-full lg:w-1/3 xl:w-full xl:h-1/3" />
     </div>
-    <kidar-echarts title="全国资金流向" type="map" :theme="theme" :data="chartData.map" class="h-full w-full xl:w-2/4" />
+    <kidar-echarts title="全国资金流向" type="map" :theme="theme" :data="chartData.map" class="h-90 w-full xl:w-2/4 xl:h-full" />
     <div class="w-full xl:w-1/4 flex flex-wrap">
-      <kidar-echarts title="实时" type="dybar" :theme="theme" :data="chartData.dybar" class="h-1/3 w-full lg:w-1/3 xl:w-full" />
-      <kidar-echarts title="环比" type="ring" :theme="theme" :data="chartData.pie" class="h-1/3 w-full lg:w-1/3 xl:w-full" />
-      <kidar-echarts title="峰值" type="line-bar-x" :theme="theme" :cols="cols.bar" :data="chartData.bar" class="h-1/3 w-full lg:w-1/3 xl:w-full" />
+      <kidar-echarts title="实时" type="dybar" :theme="theme" :data="chartData.dybar" class="h-70 w-full lg:w-1/3 xl:w-full xl:h-1/3" />
+      <kidar-echarts title="环比" type="ring" :theme="theme" :data="chartData.pie" class="h-70 w-full lg:w-1/3 xl:w-full xl:h-1/3" />
+      <kidar-echarts title="峰值" type="line-bar-x" :theme="theme" :cols="cols.bar" :data="chartData.bar" class="h-70 w-full lg:w-1/3 xl:w-full xl:h-1/3" />
     </div>
   </div>
 </template>
